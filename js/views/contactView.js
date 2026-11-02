@@ -1,0 +1,3 @@
+import {H} from '../util.js';import {S} from '../store.js';import {st} from '../state.js';import {mapSvg,board,stChip} from '../components/routeMap.js';import {waUrl} from '../components/navbar.js';import {switcher} from '../theme.js';
+
+export default ()=>{const s=S.getSettings();return`<div class="w sec"><h1>Contact</h1><p class="mu" style="margin:16px 0">${H(s.addr)}<br>${H(s.phone)}</p><a class="btn" href="tel:${H(s.phone.replace(/[^\d+]/g,''))}">Call</a> <a class="btn bo" href="${waUrl(s,'Hello Kimantra SACCO')}">WhatsApp</a> <a class="btn bo" href="https://maps.google.com/?q=Kimana+Kajiado" rel="noopener">Map</a></div>`};

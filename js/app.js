@@ -1,0 +1,21 @@
+import {$,$$} from './util.js';import {S,DEF,initStore} from './store.js';import {toast} from './components/toast.js';import {setTheme,setMode,FONTS,root} from './theme.js';import {waUrl} from './components/navbar.js';import {st} from './state.js';import {go,rerender} from './router.js';import {fleetCards} from './views/fleetView.js';
+/* ---------- events ---------- */
+const dl=(n,t,m)=>{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([t],{type:m}));a.download=n;a.click()};
+document.addEventListener('click',e=>{const el=e.target.closest('[data-a]');if(!el||el.tagName=='SELECT'||el.type=='checkbox'||el.type=='number')return;const a=el.dataset.a,i=+el.dataset.i,B=S.getBookings();
+if(a=='th')setTheme(el.dataset.v);else if(a=='md')setMode(el.dataset.v);else if(a=='mn'){const n=$('#nv').classList.toggle('open');el.setAttribute('aria-expanded',n)}
+else if(a=='pdf'){e.preventDefault();toast('Placeholder link — add real PDF')}else if(a=='req')toast('Credit request noted (demo)');
+else if(a=='back'){st.bk.step--;rerender()}else if(a=='bh'){B[i].done=true;S.saveBookings(B);rerender()}else if(a=='bd'){B.splice(i,1);S.saveBookings(B);rerender()}
+else if(a=='csv')dl('bookings.csv',['date,name,phone,from,to,produce,tonnes',...B.map(b=>[b.date,b.name,b.phone,b.from,b.to,b.produce,b.tonnes].map(v=>'"'+String(v).replace(/"/g,'""')+'"').join(','))].join('\n'),'text/csv');
+else if(a=='exp')dl('kimantra.json',JSON.stringify(Object.fromEntries(Object.keys(DEF).map(k=>[k,ld(k)]))),'application/json');
+else if(a=='rst'){try{Object.keys(DEF).forEach(k=>localStorage.removeItem('ks-'+k))}catch{}rerender();toast('Reset')}else if(a=='out'){st.admin=false;rerender()}else if(a=='fd'){const F=S.getFleet();F.splice(i,1);S.saveFleet(F);rerender()}});
+document.addEventListener('change',e=>{const el=e.target,a=el.dataset.a;if(a=='flt'){const c=$('#fc').value,b=$('#fb').value;$('#fl').innerHTML=fleetCards(S.getFleet().filter(f=>(!c||f.cls==c)&&(!b||f.border)))}
+else if(a=='cart'){const n=$$('[data-a=cart]:checked').length;$('#ct').textContent=n;$('#mt').style.width=n*25+'%'}else if(a=='rs'){const R=S.getRoutes();R[+el.dataset.i].st=el.value;S.saveRoutes(R);toast('Saved')}else if(a=='sp'){const T=S.getStore();T.items[+el.dataset.i].price=el.value;S.saveStore(T);toast('Saved')}else if(a=='imp'){el.files[0]?.text().then(t=>{try{const o=JSON.parse(t);for(const k in DEF)if(o[k])localStorage.setItem('ks-'+k,JSON.stringify(o[k]));rerender();toast('Imported')}catch{toast('Invalid JSON')}})}});
+document.addEventListener('input',e=>{if(e.target.dataset.a=='calc'){const v=+e.target.value;$('#cr').innerHTML=v>0?`At 3×: KES ${(v*3).toLocaleString()} · At 4×: KES ${(v*4).toLocaleString()}<br><span class="lb">Illustrative; subject to guarantors and approval</span>`:'Enter savings to see a range.'}});
+document.addEventListener('submit',e=>{e.preventDefault();const f=e.target,k=f.dataset.f,d=Object.fromEntries(new FormData(f)),s=S.getSettings();
+if(k=='quick'){st.bk={step:1,...d};location.hash='#/booking'}
+else if(k=='book'){Object.assign(st.bk,d);if(Object.values(d).some(v=>!String(v).trim()))return toast('Please fill in every field');if(st.bk.step<2){st.bk.step++;return rerender()}
+const b={...st.bk,date:st.bk.date,done:false};delete b.step;S.saveBookings([...S.getBookings(),b]);const txt=`Truck request: ${b.produce}, ${b.tonnes}t, ${b.from} to ${b.to} on ${b.date}. Name: ${b.name}, phone ${b.phone}.`;st.bk={step:0};
+const u=waUrl(s,txt);if(u[0]=='#'){toast('WhatsApp number not set yet — saved to log, calling instead');location.href='tel:'+s.phone.replace(/[^\d+]/g,'')}else location.href=u;rerender()}
+else if(k=='fadd'){const F=S.getFleet();F.push({id:Date.now(),name:d.name,cls:d.cls,border:!!d.border,cap:'[ TONNES ]'});S.saveFleet(F);rerender()}else if(k=='login'){if(d.pin==s.pin){st.admin=true;rerender()}else toast('Wrong PIN')}else if(k=='set'){S.saveSettings({...s,...d});toast('Saved');renderChrome()}});
+addEventListener('hashchange',go);
+$('#fnt').href='https://fonts.googleapis.com/css2?family='+FONTS[root.dataset.theme]+'&display=swap';initStore().then(()=>{try{if(!new URLSearchParams(location.search).get('theme')&&!localStorage.getItem('ks-theme')){const d=S.getSettings().theme;if(d&&d!=root.dataset.theme)setTheme(d)}}catch{}go()});

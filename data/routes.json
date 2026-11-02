@@ -1,0 +1,32 @@
+[
+  {
+    "to": "Nairobi",
+    "st": "Open",
+    "hrs": "[ HRS ]",
+    "permit": "—"
+  },
+  {
+    "to": "Mombasa",
+    "st": "Open",
+    "hrs": "[ HRS ]",
+    "permit": "—"
+  },
+  {
+    "to": "Namanga",
+    "st": "Open",
+    "hrs": "[ HRS ]",
+    "permit": "—"
+  },
+  {
+    "to": "Arusha",
+    "st": "Open",
+    "hrs": "[ HRS ]",
+    "permit": "Cross-border permit"
+  },
+  {
+    "to": "Kampala",
+    "st": "Open",
+    "hrs": "[ HRS ]",
+    "permit": "Cross-border permit"
+  }
+]

@@ -1,0 +1,3 @@
+[data-theme=corridor-control]{--fh:'DM Sans',system-ui,sans-serif;--fb:'DM Sans',system-ui,sans-serif;--rb:6px;--rc:8px}
+[data-theme=corridor-control][data-mode=light]{--bg:#F3F5F7;--sf:#fff;--ink:#14213D;--mu:#5B6679;--ln:#E1E6EB;--ac:#3E7021;--bt:#14213D;--bi:#fff;--pn:#14213D;--pi:#F3F5F7;--wn:#8A5A12;--wb:#FBF0DA}
+[data-theme=corridor-control][data-mode=dark]{--bg:#0D1628;--sf:#14213D;--ink:#EEF1F6;--mu:#9CA8BC;--ln:#26365A;--ac:#8FCB63;--bt:#8FCB63;--bi:#0D1628;--pn:#1A2A4B;--pi:#EEF1F6;--wn:#F2C36B;--wb:#3A2D12}
