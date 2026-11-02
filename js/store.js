@@ -1,6 +1,6 @@
 import {toast} from './components/toast.js';
 /* ---------- store (swap these functions for a real API) ---------- */
-const DEF={settings:{wa:'[ +254 7XX XXX XXX ]',phone:'[ +254 7XX XXX XXX ]',reg:'[ SACCO REG. NO. ]',addr:'Kimana, Kajiado County',pin:'1234',theme:'haul-line',mode:'system'},
+const DEF={settings:{wa:'[ +254 7XX XXX XXX ]',phone:'[ +254 7XX XXX XXX ]',reg:'[ SACCO REG. NO. ]',addr:'Kimana, Kajiado County',pin:'1234',theme:'corridor-control',mode:'system'},
 fleet:[{id:1,name:'Volvo FH [ REG. ]',cls:'Volvo FH',border:true,cap:'[ TONNES ]'},{id:2,name:'Fuso / Fararas [ REG. ]',cls:'Fuso / Fararas',border:true,cap:'[ TONNES ]'},{id:3,name:'Fuso / Fararas [ REG. ]',cls:'Fuso / Fararas',border:false,cap:'[ TONNES ]'}],
 routes:[...['Nairobi','Mombasa','Namanga','Arusha','Kampala'].map((to,i)=>({to,st:'Open',hrs:'[ HRS ]',permit:i>2?'Cross-border permit':'—'}))],
 store:{limit:'[ CREDIT LIMIT ]',items:['Heavy-duty truck tyre','Engine oil (bulk)','Truck battery','Mechanical spares'].map((n,i)=>({id:i+1,name:n,price:'[ PRICE ]'}))},bookings:[]};

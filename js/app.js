@@ -1,4 +1,4 @@
-import {$,$$} from './util.js';import {S,DEF,initStore} from './store.js';import {toast} from './components/toast.js';import {setTheme,setMode,FONTS,root} from './theme.js';import {waUrl} from './components/navbar.js';import {st} from './state.js';import {go,rerender} from './router.js';import {fleetCards} from './views/fleetView.js';
+import {$,$$} from './util.js';import {S,DEF,ld,initStore} from './store.js';import {toast} from './components/toast.js';import {setTheme,setMode,FONTS,root} from './theme.js';import {waUrl,renderChrome} from './components/navbar.js';import {st} from './state.js';import {go,rerender} from './router.js';import {fleetCards} from './views/fleetView.js';
 /* ---------- events ---------- */
 const dl=(n,t,m)=>{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([t],{type:m}));a.download=n;a.click()};
 document.addEventListener('click',e=>{const el=e.target.closest('[data-a]');if(!el||el.tagName=='SELECT'||el.type=='checkbox'||el.type=='number')return;const a=el.dataset.a,i=+el.dataset.i,B=S.getBookings();

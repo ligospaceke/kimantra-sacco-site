@@ -4,6 +4,6 @@
   "reg": "[ SACCO REG. NO. ]",
   "addr": "Kimana, Kajiado County",
   "pin": "1234",
-  "theme": "haul-line",
+  "theme": "corridor-control",
   "mode": "system"
 }

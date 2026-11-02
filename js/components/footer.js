@@ -1,3 +1,3 @@
-import {H} from '../util.js';import {S} from '../store.js';import {switcher} from '../theme.js';import {LINKS} from './navbar.js';
+import {$,H} from '../util.js';import {S} from '../store.js';import {switcher} from '../theme.js';import {LINKS} from './navbar.js';
 export function renderFooter(){const s=S.getSettings(),tel='tel:'+s.phone.replace(/[^\d+]/g,'');
 $('#ft').innerHTML=`<div class="w sec" style="border-top:1px solid var(--ln)"><div class="g g3"><div><b class="br">Kimantra SACCO</b><p class="mu">${H(s.addr)}<br>${H(s.reg)}</p></div><div class="lb">Links<p style="letter-spacing:0;text-transform:none;font-size:13px">${LINKS.map(([p,n])=>`<a href="#${p}">${n}</a>`).join(' · ')}</p></div><div class="lb">Contact<p style="letter-spacing:0;text-transform:none;font-size:13px"><a href="${tel}">${H(s.phone)}</a><br><a href="#/admin">Admin (demo)</a></p></div></div><div style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap">${switcher()}</div></div>`}

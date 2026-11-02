@@ -2,7 +2,7 @@
 Vanilla HTML/CSS/ES6 modules. No build step, no dependencies.
 
 ## Run
-`python3 -m http.server 8080` in this folder, open http://localhost:8080. (Opening index.html directly works for the UI, but `data/*.json` is only fetched over http; the embedded defaults are used otherwise.) Deploy by uploading the folder to any static host.
+`python3 -m http.server 8080` in this folder, open http://localhost:8080. (Double-clicking index.html does NOT work: browsers block ES modules on file://.) Deploy by uploading the folder to any static host.
 
 ## Real values
 Edit `data/*.json` (or use `#/admin` > Settings). Bracketed placeholders such as `[ PRICE ]` and `[ +254 7XX XXX XXX ]` must be replaced before launch. Booking only opens WhatsApp once a real number is set.
