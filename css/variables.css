@@ -1,14 +1,13 @@
-/* Design tokens: Co-op Trust. Dark mode follows the visitor's device. */
+/* Design tokens: Co-op Trust. One green-and-gold identity on every page. */
 :root{
   --font-head:'Cormorant Garamond',Georgia,serif;
   --font-body:Inter,system-ui,-apple-system,'Segoe UI',sans-serif;
   --r:2px;--max:1120px;--ease:cubic-bezier(.2,.7,.2,1);
-  --bg:#FAF8F3;--surface:#fff;--ink:#1D2B26;--muted:#5A6862;--line:#E6E1D6;--accent:#7A6A3E;
-  --btn:#123B2E;--btn-ink:#FAF8F3;
-  --panel:#123B2E;--on-panel:#FAF8F3;--hi:#D9C48A;--on-hi:#123B2E;
-  --warn:#8A5A12;--warn-bg:#FBF0DA;--wa:#1f7a3a;
-  color-scheme:light dark;
+  /* Page background: swap this one line to use a real photo, e.g. url("../assets/images/bg.jpg") */
+  --bg-image:url("../assets/images/bg.svg");
+  --bg:#0A261D;--surface:rgba(16,56,43,.74);--ink:#F1EEE4;--muted:#B3C2BA;--line:rgba(217,196,138,.22);--accent:#D9C48A;
+  --btn:#D9C48A;--btn-ink:#0C2A21;
+  --panel:#0A2B21;--on-panel:#F1EEE4;--hi:#D9C48A;--on-hi:#0C2A21;
+  --warn:#F2C36B;--warn-bg:rgba(242,195,107,.14);--wa:#1f7a3a;
+  color-scheme:dark;
 }
-@media (prefers-color-scheme:dark){:root{
-  --bg:#0C2A21;--surface:#123B2E;--ink:#F1EEE4;--muted:#A9B8B0;--line:#24503F;--accent:#D9C48A;
-  --btn:#D9C48A;--btn-ink:#0C2A21;--panel:#0F3326;--on-panel:#F1EEE4;--warn:#F2C36B;--warn-bg:#3A2D12}}

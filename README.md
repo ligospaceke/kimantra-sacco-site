@@ -19,3 +19,6 @@ Vanilla HTML/CSS/ES modules. No build step, no dependencies.
 
 ## Scaling notes (1M+ visitors)
 Fully static: the CDN serves everything, so traffic costs nothing extra. Data files and views are cached by the service worker. Booking goes to WhatsApp, so there is no server to overload. To add a backend later, set `site.api` to an endpoint that accepts the booking JSON. Known limits: hash routes are not indexed per page by Google (move to real URLs later if SEO matters), and the demo admin panel was removed because browser-only admin is insecure.
+
+## Background image
+The page background is `assets/images/bg.svg` (Kilimanjaro-and-road illustration). To use a real photo, add e.g. `bg.jpg` (about 1920px wide, under 250 KB) and change `--bg-image` in `css/variables.css`. A dark overlay keeps text readable.
