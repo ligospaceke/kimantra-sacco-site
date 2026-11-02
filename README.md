@@ -1,15 +1,21 @@
-# Kimantra SACCO website
-Vanilla HTML/CSS/ES6 modules. No build step, no dependencies.
+# Kimantra SACCO website (Co-op Trust design)
+Vanilla HTML/CSS/ES modules. No build step, no dependencies.
 
 ## Run
-`python3 -m http.server 8080` in this folder, open http://localhost:8080. (Double-clicking index.html does NOT work: browsers block ES modules on file://.) Deploy by uploading the folder to any static host.
+`python3 -m http.server 8080` then open http://localhost:8080 (file:// won't work: browsers block ES modules). Deploy by uploading the folder to GitHub Pages, Netlify or Cloudflare Pages.
 
-## Real values
-Edit `data/*.json` (or use `#/admin` > Settings). Bracketed placeholders such as `[ PRICE ]` and `[ +254 7XX XXX XXX ]` must be replaced before launch. Booking only opens WhatsApp once a real number is set.
+## Structure
+- `css/variables.css` design tokens (light + dark via device setting) · `global.css` reset/type/layout · `components.css` UI
+- `js/router.js` hash router, each view is lazy-loaded · `js/views/*` pages · `js/components/*` navbar, footer, map, photo
+- `js/store.js` the ONLY data layer: reads `data/*.json`, sends requests (WhatsApp now, `site.api` later)
+- `data/*.json` all editable content. Replace every `[ BRACKETED ]` value before launch
+- `sw.js` offline cache for poor-network corridors. **Bump `V` in sw.js on every deploy**
+- `assets/images/` drop real photos with these names to replace placeholders: hero.jpg, volvo.jpg, fuso.jpg, tyres.jpg (use ~1600px wide, under 200 KB, WebP/JPG)
 
-## Add a theme
-1. Copy `css/themes/haul-line.css` to `css/themes/<name>.css`; keep the `[data-theme="<name>"][data-mode="light|dark"]` token blocks (`--bg --sf --ink --mu --ln --ac --bt --bi --pn --pi`, fonts `--fh --fb`, radii `--rb --rc`). Check 4.5:1 contrast in both modes.
-2. Register it in `js/theme.js` (`FONTS`, `LAY` = top | centered | sidebar, `NAMES`) and in the layout map in the inline script in `index.html`.
+## Launch checklist
+1. Fill `data/site.json` (wa, phone, reg, hours, founded, members). Booking opens WhatsApp only once `wa` is real.
+2. Fill routes hours, fleet registrations/tonnage, hub prices, credit limit, joining requirements.
+3. Put PDF forms in `assets/forms/` and set their `url` in `data/hub.json`.
 
-## Swap the demo store for a real API
-All data goes through `S` in `js/store.js` (getFleet/saveFleet, getRoutes/saveRoutes, getStore/saveStore, getBookings/saveBookings, getSettings/saveSettings). Reimplement them with `fetch` calls (they are synchronous now, so make them `async` and `await` them in the views and `js/app.js`). Replace the demo PIN with real server-side auth; the admin here is front-end only and NOT secure.
+## Scaling notes (1M+ visitors)
+Fully static: the CDN serves everything, so traffic costs nothing extra. Data files and views are cached by the service worker. Booking goes to WhatsApp, so there is no server to overload. To add a backend later, set `site.api` to an endpoint that accepts the booking JSON. Known limits: hash routes are not indexed per page by Google (move to real URLs later if SEO matters), and the demo admin panel was removed because browser-only admin is insecure.

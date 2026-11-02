@@ -1,0 +1,12 @@
+{
+  "name": "Kimantra SACCO",
+  "wa": "[ +254 7XX XXX XXX ]",
+  "phone": "[ +254 7XX XXX XXX ]",
+  "reg": "[ SACCO REG. NO. ]",
+  "address": "Kimana, Kajiado County",
+  "hours": "[ OFFICE HOURS ]",
+  "founded": "[ FOUNDING YEAR ]",
+  "members": "[ MEMBER COUNT ]",
+  "api": null,
+  "produce": ["Tomatoes", "Onions", "Mangoes", "Oranges"]
+}

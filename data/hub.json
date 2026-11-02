@@ -1,0 +1,15 @@
+{
+  "limit": "[ CREDIT LIMIT ]",
+  "items": [
+    {"id":1,"name":"Heavy-duty truck tyre","price":"[ PRICE ]"},
+    {"id":2,"name":"Engine oil (bulk)","price":"[ PRICE ]"},
+    {"id":3,"name":"Truck battery","price":"[ PRICE ]"},
+    {"id":4,"name":"Mechanical spares","price":"[ PRICE ]"}
+  ],
+  "join": ["[ MEMBERSHIP REQUIREMENT 1 ]","[ MEMBERSHIP REQUIREMENT 2 ]","[ MEMBERSHIP REQUIREMENT 3 ]"],
+  "forms": [
+    {"name":"Membership application","url":null},
+    {"name":"Loan application","url":null},
+    {"name":"Tyre credit request","url":null}
+  ]
+}

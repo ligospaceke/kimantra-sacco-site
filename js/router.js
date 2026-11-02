@@ -1,10 +1,15 @@
-import {$,$$} from './util.js';import {renderChrome,cur} from './components/navbar.js';
-import homeV from './views/homeView.js';import fleetV from './views/fleetView.js';import servicesV from './views/servicesView.js';import hubV from './views/hubView.js';import bookingV from './views/bookingView.js';import aboutV from './views/aboutView.js';import contactV from './views/contactView.js';import adminV from './views/adminView.js';
-const V={'/':homeV,'/fleet':fleetV,'/services':servicesV,'/hub':hubV,'/booking':bookingV,'/about':aboutV,'/contact':contactV,'/admin':adminV};
-const go=()=>{renderChrome();const f=V[cur()]||V['/'];$('#app').innerHTML=f();scrollTo(0,0);fx()};
-const rerender=()=>{$('#app').innerHTML=(V[cur()]||V['/'])()};
-export {go,rerender};
-function fx(){if(matchMedia('(prefers-reduced-motion:reduce)').matches||!('IntersectionObserver' in window))return;
-const h=$('#app h1');if(h)h.innerHTML=h.textContent.split(' ').map((w,i)=>`<span class="wd"><span style="--i:${i}">${w.replace(/&/g,'&amp;').replace(/</g,'&lt;')}</span></span>`).join(' ');
-const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.1,rootMargin:'0px 0px -6% 0px'});
-$$('#app section:not(.hero),#app .g>.cd,#app .st').forEach((el,i)=>{el.classList.add('rv');el.style.setProperty('--d',(i%3)*.09+'s');io.observe(el)})}
+/* Hash router with per-view code splitting (native dynamic import, no bundler). */
+import {$} from './util.js';
+import {load} from './store.js';
+import {renderChrome} from './components/navbar.js';
+const R={'/':['home','Home'],'/about':['about','About us'],'/fleet':['fleet','Fleet & routes'],'/services':['services','Services'],'/hub':['hub','Member hub'],'/booking':['booking','Book a truck'],'/contact':['contact','Contact']};
+const FALLBACK={name:'Kimantra SACCO',wa:'[ ]',phone:'[ ]',reg:'',address:'Kimana, Kajiado County',hours:'',founded:'',members:'',produce:[]};
+let seq=0;
+export async function navigate(){
+  const id=++seq,raw=location.hash.slice(1).split('?')[0]||'/',path=R[raw]?raw:'/',[file,title]=R[path],app=$('#app');
+  const site=await load('site').catch(()=>FALLBACK);if(id!==seq)return;
+  renderChrome(path,site);
+  try{const m=await import(`./views/${file}View.js`);const html=await m.render(site);if(id!==seq)return;app.innerHTML=html;m.mount?.(app,site)}
+  catch(e){console.error(e);app.innerHTML='<div class="w sec"><h1>Can’t load this page</h1><p class="mu">Check your connection and try again.</p><p style="margin-top:20px"><a class="btn" href="#/">Back home</a></p></div>'}
+  document.title=(path==='/'?site.name:`${title} · ${site.name}`);scrollTo(0,0);app.focus({preventScroll:true});
+}

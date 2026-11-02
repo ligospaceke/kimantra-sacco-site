@@ -1,3 +1,4 @@
-import {H} from '../util.js';import {S} from '../store.js';import {st} from '../state.js';import {mapSvg,board,stChip} from '../components/routeMap.js';import {waUrl} from '../components/navbar.js';import {switcher} from '../theme.js';
-
-export default ()=>{const s=S.getSettings();return`<div class="w sec"><h1>Contact</h1><p class="mu" style="margin:16px 0">${H(s.addr)}<br>${H(s.phone)}</p><a class="btn" href="tel:${H(s.phone.replace(/[^\d+]/g,''))}">Call</a> <a class="btn bo" href="${waUrl(s,'Hello Kimantra SACCO')}">WhatsApp</a> <a class="btn bo" href="https://maps.google.com/?q=Kimana+Kajiado" rel="noopener">Map</a></div>`};
+import {esc} from '../util.js';
+import {waLink,telLink} from '../store.js';
+export async function render(s){const tel=telLink(s),wa=waLink(s,'Hello Kimantra SACCO');
+return `<div class="w sec"><p class="lb">Contact</p><h1>Talk to dispatch.</h1><p class="mu">${esc(s.address)}<br>${esc(s.phone)}<br>${esc(s.hours)}</p><div class="act" style="margin-top:28px">${tel?`<a class="btn" href="${tel}">Call</a>`:'<span class="chip wn">Phone number coming soon</span>'}${wa?`<a class="btn ol" href="${wa}">WhatsApp</a>`:''}<a class="btn ol" href="https://maps.google.com/?q=Kimana+Kajiado" rel="noopener">Map</a></div></div>`}

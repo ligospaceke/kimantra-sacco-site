@@ -1,3 +1,5 @@
-import {H} from '../util.js';import {S} from '../store.js';import {st} from '../state.js';import {mapSvg,board,stChip} from '../components/routeMap.js';import {waUrl} from '../components/navbar.js';import {switcher} from '../theme.js';
-
-export default ()=>`<div class="w sec"><h1>About Kimantra SACCO</h1><p class="mu" style="max-width:560px;margin-top:16px">A transport and financial co-operative in Kimana, Kajiado County, serving heavy-haul operators. [ FOUNDING YEAR ] · [ MEMBER COUNT ] · ${H(S.getSettings().reg)}</p></div>`;
+import {esc} from '../util.js';
+const P=[['Member welfare & financials','Savings, development loans, peer guarantors and dividends.'],['Logistics operations','Transit corridors and cargo contracts for produce haulage.'],['Procurement & compliance','Bulk tyres and spares, NTSA badges and cross-border permits.']];
+export async function render(s){return `<div class="w sec"><p class="lb">About us</p><h1>A co-operative that moves East Africa’s produce.</h1><p class="mu">Kimantra SACCO is a transport and financial co-operative in Kimana, Kajiado County, serving heavy-haul operators on the routes that connect Kimana and Tanzania to Nairobi, Mombasa and Kampala.</p>
+<div class="g g3" style="margin:40px 0">${P.map(([a,b],i)=>`<div class="cd"><span class="num">0${i+1}</span><h3>${a}</h3><p class="mu">${b}</p></div>`).join('')}</div>
+<div class="rw"><span class="lb">Founded</span><span>${esc(s.founded)}</span></div><div class="rw"><span class="lb">Members</span><span>${esc(s.members)}</span></div><div class="rw"><span class="lb">Registration</span><span>${esc(s.reg)}</span></div></div>`}
