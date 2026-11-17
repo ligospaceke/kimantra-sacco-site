@@ -1,2 +1,2 @@
-/* Placeholder-first image: drop a real file into assets/images/ with the same name and it replaces the placeholder. */
-export const ph=(file,label,cls='')=>`<div class="ph ${cls}"><svg viewBox="0 0 220 90" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="3"><rect x="4" y="22" width="52" height="46" rx="3"/><rect x="62" y="14" width="152" height="54" rx="2"/><circle cx="30" cy="72" r="11"/><circle cx="110" cy="72" r="11"/><circle cx="180" cy="72" r="11"/></svg><span>${label}</span><img data-opt src="assets/images/${file}" alt="" width="800" height="500" loading="lazy" decoding="async"></div>`;
+import {art} from './art.js';
+export const ph=(f,l,c='')=>`<div class="ph ${c}">${art(f)}<span>${l}</span><img src="img/${f}" alt="" width="800" height="500" loading="lazy" onerror="this.remove()"></div>`;

@@ -9,5 +9,5 @@ function setMode(m){try{localStorage.setItem('ks-mode',m)}catch{}applyMode();ren
 mq.addEventListener('change',()=>pref()=='system'&&applyMode());
 const switcher=()=>`<div class="sw" role="group" aria-label="Theme">${Object.keys(LAY).map(t=>`<button data-a="th" data-v="${t}" aria-pressed="${root.dataset.theme==t}">${NAMES[t]}</button>`).join('')}</div><div class="sw" role="group" aria-label="Mode">${['light','dark','system'].map(m=>`<button data-a="md" data-v="${m}" aria-pressed="${pref()==m}">${m[0].toUpperCase()+m.slice(1)}</button>`).join('')}</div>`;
 
-function setTheme(t){const l=$('#theme'),n=l.cloneNode();n.href='css/themes/'+t+'.css';n.onload=()=>{l.remove();root.dataset.theme=t;root.dataset.layout=LAY[t];renderChrome()};l.after(n);try{localStorage.setItem('ks-theme',t)}catch{}$('#fnt').href='https://fonts.googleapis.com/css2?family='+FONTS[t]+'&display=swap'}
+function setTheme(t){root.dataset.theme=t;root.dataset.layout=LAY[t];try{localStorage.setItem('ks-theme',t)}catch{}$('#fnt').href='https://fonts.googleapis.com/css2?family='+FONTS[t]+'&display=swap';renderChrome()}
 export {FONTS,LAY,NAMES,root,pref,applyMode,setTheme,setMode,switcher};

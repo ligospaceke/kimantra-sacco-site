@@ -17,3 +17,5 @@
 .wd{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.1em}.wd>span{display:inline-block;transform:translateY(110%);animation:wd .9s var(--e) forwards;animation-delay:calc(var(--i)*70ms + .15s)}
 .rv{opacity:0}.rv.in{opacity:1;animation:up .8s var(--e) backwards;animation-delay:var(--d,0s)}
 .mq div{animation:mq 32s linear infinite}.chip.o::before{animation:pl 2.4s infinite}}
+@keyframes cl{from{transform:translateX(-140px)}to{transform:translateX(700px)}}@keyframes rdl{to{stroke-dashoffset:-32}}@keyframes sp{to{transform:rotate(360deg)}}@keyframes bob{to{transform:translateY(-1.5px)}}
+@media(prefers-reduced-motion:no-preference){.cl{animation:cl 70s linear infinite}.rd{animation:rdl .9s linear infinite}.wh{transform-box:fill-box;transform-origin:center;animation:sp .7s linear infinite}.wh.slow{animation-duration:10s}.tb{animation:bob 1.4s ease-in-out infinite alternate}}
