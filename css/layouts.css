@@ -1,0 +1,24 @@
+.hd{position:sticky;top:0;z-index:5;background:var(--pn);color:var(--pi)}.hd .w{display:flex;align-items:center;gap:20px;min-height:64px;flex-wrap:wrap}
+.br{font:800 20px var(--fh);letter-spacing:-.02em;text-decoration:none}.br .ac{color:var(--hi)}
+.nv{display:none;gap:2px;flex:1}.nv a{padding:12px 14px;text-decoration:none;color:color-mix(in srgb,var(--pi) 75%,transparent);font-size:12px;font-weight:500;min-height:44px}
+.nv a:hover,.nv a[aria-current]{color:var(--pi)}.nv a[aria-current]{box-shadow:inset 0 -2px var(--hi)}
+.nv.open{display:flex;flex-direction:column;width:100%;order:9;padding-bottom:12px}.mn{margin-left:auto;min-height:44px;padding:0 18px;border-radius:var(--rb);background:none;color:var(--pi);border:1.5px solid color-mix(in srgb,var(--pi) 40%,transparent)}
+.nvwa{display:none}.hd .sw{display:none}.nv.open~.sw{display:flex;width:100%;order:10}.sw{display:flex;gap:4px;flex-wrap:wrap}
+.sw button{min-height:44px;padding:0 14px;background:none;color:var(--ink);border:1px solid var(--ln);border-radius:var(--rb);font-size:11px;font-weight:500;cursor:pointer}.sw button[aria-pressed=true]{background:var(--bt);color:var(--bi);border-color:var(--bt)}
+.hd .sw button,#ft .sw button{color:var(--pi);border-color:color-mix(in srgb,var(--pi) 35%,transparent)}.hd .sw button[aria-pressed=true],#ft .sw button[aria-pressed=true]{background:var(--hi);color:var(--hn);border-color:var(--hi)}#ft .sw{margin-top:8px}
+.hero{display:grid;gap:36px;padding-top:clamp(32px,6vw,72px);padding-bottom:clamp(72px,10vw,112px)}.hc p{margin:18px 0 28px;font-size:15px;color:color-mix(in srgb,var(--pi) 85%,transparent)}.act{display:flex;gap:12px;flex-wrap:wrap}
+[data-layout=centered] .hd .w{flex-direction:column;gap:2px;padding-top:12px}[data-layout=centered] .nv{justify-content:center;flex:none}
+@media(max-width:899px){[data-layout=centered] .hd .w{flex-direction:row;justify-content:space-between}}
+@media(min-width:900px){body{padding-bottom:0}.tabs,.mn,.wa{display:none}.nv{display:flex}.nvwa{display:inline-flex;min-height:40px;padding:0 20px}.hd .sw{display:flex}.hd .sw button{min-height:34px;padding:0 10px}
+.hero{grid-template-columns:1.1fr .9fr;align-items:center;gap:56px}.split{grid-template-columns:1fr 1fr;gap:64px}.blk{grid-template-columns:1.2fr .8fr}.con{margin-top:-64px}}
+@keyframes up{from{opacity:0;transform:translateY(24px)}}@keyframes wd{to{transform:none}}@keyframes mq{to{transform:translateX(-50%)}}@keyframes pl{50%{opacity:.3}}
+@media(prefers-reduced-motion:no-preference){
+.hc>:not(h1){animation:up .9s var(--e) both;animation-delay:.55s}.hc>.lb{animation-delay:.05s}.hc>.act{animation-delay:.75s}.hero>.ph{animation:up 1s .35s var(--e) both}
+.wd{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.1em}.wd>span{display:inline-block;transform:translateY(110%);animation:wd .9s var(--e) forwards;animation-delay:calc(var(--i)*70ms + .15s)}
+.rv{opacity:0}.rv.in{opacity:1;animation:up .8s var(--e) backwards;animation-delay:var(--d,0s)}
+.mq div{animation:mq 32s linear infinite}.chip.o::before{animation:pl 2.4s infinite}}
+@keyframes cl{from{transform:translateX(-140px)}to{transform:translateX(700px)}}@keyframes rdl{to{stroke-dashoffset:-32}}@keyframes sp{to{transform:rotate(360deg)}}@keyframes bob{to{transform:translateY(-1.5px)}}
+@media(prefers-reduced-motion:no-preference){.cl{animation:cl 70s linear infinite}.rd{animation:rdl .9s linear infinite}.wh{transform-box:fill-box;transform-origin:center;animation:sp .7s linear infinite}.wh.slow{animation-duration:10s}.tb{animation:bob 1.4s ease-in-out infinite alternate}}
+[data-layout=centered] .hd .w{flex-direction:row;flex-wrap:wrap;justify-content:center;gap:6px 14px;padding-top:14px;padding-bottom:10px}[data-layout=centered] .br{width:100%;text-align:center;font-size:28px}[data-layout=centered] .nv{width:100%;justify-content:center;flex:none}[data-layout=centered] .nvwa{display:none}
+@media(max-width:899px){[data-layout=centered] .hd .w{flex-direction:row;justify-content:space-between}[data-layout=centered] .br{width:auto;font-size:22px}}
+@media(prefers-reduced-motion:no-preference){.hxc>*{animation:up 1s var(--e) both}.hxc>:nth-child(2){animation-delay:.15s}.hxc>:nth-child(3){animation-delay:.3s}.hxc>:nth-child(4){animation-delay:.45s}.fgt{animation:up 1.2s .4s var(--e) both}}

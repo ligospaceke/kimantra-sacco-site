@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "name": "Volvo FH [ REG. ]",
+    "cls": "Volvo FH",
+    "border": true,
+    "cap": "[ TONNES ]"
+  },
+  {
+    "id": 2,
+    "name": "Fuso / Fararas [ REG. ]",
+    "cls": "Fuso / Fararas",
+    "border": true,
+    "cap": "[ TONNES ]"
+  },
+  {
+    "id": 3,
+    "name": "Fuso / Fararas [ REG. ]",
+    "cls": "Fuso / Fararas",
+    "border": false,
+    "cap": "[ TONNES ]"
+  }
+]

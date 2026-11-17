@@ -1,17 +1,13 @@
 # Kimantra SACCO website
-Vanilla HTML/CSS/ES6 modules. No build step, no dependencies.
+One design (Co-op Trust, light and dark). Vanilla HTML/CSS/ES6 modules, no build step.
 
-## Run
-`python3 -m http.server 8080` in this folder, open http://localhost:8080. (Double-clicking index.html does NOT work: browsers block ES modules on file://.) Deploy by uploading the folder to any static host.
+Pages: Home, Services & Hub, Fleet & Book, Contact.
 
-## Real values
-Edit `data/*.json` (or use `#/admin` > Settings). Bracketed placeholders such as `[ PRICE ]` and `[ +254 7XX XXX XXX ]` must be replaced before launch. Booking only opens WhatsApp once a real number is set.
+## Run / deploy
+`python3 -m http.server 8080` then open http://localhost:8080. Deploy by uploading the folder to GitHub Pages or any static host. (Opening index.html by double-click does not work: browsers block ES modules on file://.)
 
-## Add a theme
-1. Copy `css/themes/haul-line.css` to `css/themes/<name>.css`; keep the `[data-theme="<name>"][data-mode="light|dark"]` token blocks (`--bg --sf --ink --mu --ln --ac --bt --bi --pn --pi`, fonts `--fh --fb`, radii `--rb --rc`). Check 4.5:1 contrast in both modes.
-2. Register it in `js/theme.js` (`FONTS`, `LAY` = top | centered | sidebar, `NAMES`) and in the layout map in the inline script in `index.html`.
+## Edit content
+Edit `data/settings.json` (WhatsApp, phone, registration no., address), `fleet.json`, `routes.json` (status, hours, permits) and `store.json` (items, prices, credit limit). Replace every bracketed placeholder such as `[ PRICE ]` before launch. Booking opens WhatsApp once a real number is set.
 
-## Swap the demo store for a real API
-All data goes through `S` in `js/store.js` (getFleet/saveFleet, getRoutes/saveRoutes, getStore/saveStore, getBookings/saveBookings, getSettings/saveSettings). Reimplement them with `fetch` calls (they are synchronous now, so make them `async` and `await` them in the views and `js/app.js`). Replace the demo PIN with real server-side auth; the admin here is front-end only and NOT secure.
-
-Note: all theme tokens live in `css/themes.css` (tiny, loaded up front) so switching themes is instant. To add a theme, append its token blocks there.
+## Photos
+Drop `hero.jpg`, `volvo.jpg`, `fuso.jpg`, `tyres.jpg` into `img/` (landscape, ~1200px, under 150 KB). Until then the illustrated scenes show.
