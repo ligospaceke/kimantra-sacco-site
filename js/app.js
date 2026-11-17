@@ -1,8 +1,8 @@
-import {$,$$} from './util.js';import {S,DEF,ld,initStore} from './store.js';import {toast} from './components/toast.js';import {setTheme,setMode,FONTS,root} from './theme.js';import {waUrl,renderChrome} from './components/navbar.js';import {st} from './state.js';import {go,rerender} from './router.js';import {fleetCards} from './views/fleetView.js';
+import {$,$$} from './util.js';import {S,DEF,ld,initStore} from './store.js';import {toast} from './components/toast.js';import {setTheme,setMode,FONTS,root} from './theme.js';import {waUrl,renderChrome} from './components/navbar.js';import {st} from './state.js';import {DEFS} from './components/art.js';import {go,rerender} from './router.js';import {fleetCards} from './views/fleetView.js';
 /* ---------- events ---------- */
 const dl=(n,t,m)=>{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([t],{type:m}));a.download=n;a.click()};
 document.addEventListener('click',e=>{const el=e.target.closest('[data-a]');if(!el||el.tagName=='SELECT'||el.type=='checkbox'||el.type=='number')return;const a=el.dataset.a,i=+el.dataset.i,B=S.getBookings();
-if(a=='th')setTheme(el.dataset.v);else if(a=='md')setMode(el.dataset.v);else if(a=='mn'){const n=$('#nv').classList.toggle('open');el.setAttribute('aria-expanded',n)}
+if(a=='th')setTheme(el.dataset.v);else if(a=='rl')$('#'+el.dataset.t).scrollBy({left:el.dataset.d*340,behavior:'smooth'});else if(a=='shuf')shuffle();else if(a=='md')setMode(el.dataset.v);else if(a=='mn'){const n=$('#nv').classList.toggle('open');el.setAttribute('aria-expanded',n)}
 else if(a=='pdf'){e.preventDefault();toast('Placeholder link — add real PDF')}else if(a=='req')toast('Credit request noted (demo)');
 else if(a=='back'){st.bk.step--;rerender()}else if(a=='bh'){B[i].done=true;S.saveBookings(B);rerender()}else if(a=='bd'){B.splice(i,1);S.saveBookings(B);rerender()}
 else if(a=='csv')dl('bookings.csv',['date,name,phone,from,to,produce,tonnes',...B.map(b=>[b.date,b.name,b.phone,b.from,b.to,b.produce,b.tonnes].map(v=>'"'+String(v).replace(/"/g,'""')+'"').join(','))].join('\n'),'text/csv');
@@ -18,4 +18,8 @@ const b={...st.bk,date:st.bk.date,done:false};delete b.step;S.saveBookings([...S
 const u=waUrl(s,txt);if(u[0]=='#'){toast('WhatsApp number not set yet — saved to log, calling instead');location.href='tel:'+s.phone.replace(/[^\d+]/g,'')}else location.href=u;rerender()}
 else if(k=='fadd'){const F=S.getFleet();F.push({id:Date.now(),name:d.name,cls:d.cls,border:!!d.border,cap:'[ TONNES ]'});S.saveFleet(F);rerender()}else if(k=='login'){if(d.pin==s.pin){st.admin=true;rerender()}else toast('Wrong PIN')}else if(k=='set'){S.saveSettings({...s,...d});toast('Saved');renderChrome()}});
 addEventListener('hashchange',go);
-$('#fnt').href='https://fonts.googleapis.com/css2?family='+FONTS[root.dataset.theme]+'&display=swap';initStore().then(()=>{try{if(!new URLSearchParams(location.search).get('theme')&&!localStorage.getItem('ks-theme')){const d=S.getSettings().theme;if(d&&d!=root.dataset.theme)setTheme(d)}}catch{}go()});
+$('#fnt').href='https://fonts.googleapis.com/css2?family='+FONTS[root.dataset.theme]+'&display=swap';initStore().then(()=>{$('#defs').innerHTML=DEFS;try{if(!new URLSearchParams(location.search).get('theme')&&!localStorage.getItem('ks-theme')){const d=S.getSettings().theme;if(d&&d!=root.dataset.theme)setTheme(d)}}catch{}go()});
+
+function shuffle(){$$('.fan .k').forEach(k=>k.dataset.p=(+k.dataset.p+2)%3)}
+let tx=0;addEventListener('touchstart',e=>{tx=e.touches[0].clientX},{passive:true});addEventListener('touchend',e=>{if(e.target.closest('.fan')&&Math.abs(e.changedTouches[0].clientX-tx)>40)shuffle()},{passive:true});
+addEventListener('scroll',()=>{if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;const b=$('.pbd>svg');if(b)b.style.setProperty('--py',b.parentElement.getBoundingClientRect().top*-.12+'px')},{passive:true});
